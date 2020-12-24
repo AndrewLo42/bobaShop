@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Table, Container } from "reactstrap";
-import { socket } from "../global/header";
+import { socket } from "../header/header";
 class UpdatePredicted extends Component {
   constructor() {
     super();
