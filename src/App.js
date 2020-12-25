@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "./App.css";
-import { Header } from "./global/header";
+// import "./App.css";
+import { Header } from "./header/header.js";
 import { Switch, Route } from "react-router-dom";
 
-import PlaceOrder from "./main/PlaceOrder";
-import UpdatePredicted from "./main/UpdatePredicted";
-import Kitchen from "./main/Kitchen";
+import PlaceOrder from "./pages/PlaceOrder";
+import UpdatePredicted from "./pages/UpdatePredicted";
+import Kitchen from "./pages/Kitchen";
 
 class App extends Component {
   render() {
