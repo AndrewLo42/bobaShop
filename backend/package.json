@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "monk": "^6.0.6",
+    "mongodb": "^3.6.3",
+    "monk": "^7.3.2",
     "socket.io": "^2.2.0"
   }
 }

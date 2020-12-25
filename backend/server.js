@@ -1,6 +1,9 @@
 const express = require("express");
+const monk = require("monk");
 const http = require("http");
 const socketIO = require("socket.io");
+
+const mongo = require("mongodb")
 
 var connection_string = "mongodb+srv://bobaShopOwner:jasminetea@cluster0.mluwe.mongodb.net/Menu?retryWrites=true&w=majority"
 
@@ -17,7 +20,10 @@ var connection_string = "mongodb+srv://bobaShopOwner:jasminetea@cluster0.mluwe.m
 //     "ordQty": 1
 // }
 
-const db = require("monk")(connection_string);
+const db = monk(connection_string);
+db.then(() => {
+  console.log("connected to DB")
+})
 
 const collection_foodItems = db.get("FoodItems");
 
@@ -32,9 +38,11 @@ const server = http.createServer(app);
 // This creates our socket using the instance of the server
 const io = socketIO(server);
 
+
 io.on("connection", socket => {
   console.log("New client connected" + socket.id);
   //console.log(socket);
+  // console.log(collection_foodItems);
 
   // Returning the initial data of food menu from FoodItems collection
   socket.on("initial_data", () => {
@@ -46,7 +54,7 @@ io.on("connection", socket => {
   // Placing the order, gets called from /src/main/PlaceOrder.js of Frontend
   socket.on("putOrder", order => {
     collection_foodItems
-      .update({ _id: order._id }, { $inc: { ordQty: order.order } })
+      .update({ _id: order._id }, { $inc: { ordQty: order.order, predQty: -order.order } })
       .then(updatedDoc => {
         // Emitting event to update the Kitchen opened across the devices with the realtime order values
         io.sockets.emit("change_data");

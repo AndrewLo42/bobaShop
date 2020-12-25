@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table, Container } from "reactstrap";
+import { Table, Container } from "reactstrap";
 import { socket } from "../header/header";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 class Kitchen extends Component {
@@ -19,7 +19,7 @@ class Kitchen extends Component {
   changeData = () => socket.emit("initial_data");
 
   componentDidMount() {
-    var state_current = this;
+    // var state_current = this;
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
     socket.on("change_data", this.changeData);
@@ -30,9 +30,11 @@ class Kitchen extends Component {
     socket.off("change_data");
   }
 
-  markDone = id => {
+  markDone = (id, qty) => {
     // console.log(predicted_details);
-    socket.emit("mark_done", id);
+    if(qty){
+      socket.emit("mark_done", id);
+    }
   };
 
 
@@ -46,7 +48,7 @@ class Kitchen extends Component {
           <td> {food.prodQty} </td>
           <td> {food.predQty} </td>
           <td>
-            <button onClick={() => this.markDone(food._id)}>Done</button>
+            <button onClick={() => this.markDone(food._id, food.ordQty)}>Done</button>
           </td>
         </tr>
       );
@@ -70,9 +72,9 @@ class Kitchen extends Component {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Current Orders</th>
+              <th>Lifetime Orders</th>
               <th>Quantity</th>
-              <th>Created Till Now</th>
-              <th>Predicted</th>
               <th>Status</th>
             </tr>
           </thead>

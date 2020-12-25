@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table, Container } from "reactstrap";
+import { Table, Container } from "reactstrap";
 import { socket } from "../header/header";
 class PlaceOrder extends Component {
   constructor() {
@@ -29,7 +29,7 @@ class PlaceOrder extends Component {
   sendOrder = id => {
     var order_details;
     this.state.food_data.map(food => {
-      if (food._id == id) {
+      if (food._id === id) {
         order_details = food;
       }
       return food;
@@ -48,7 +48,7 @@ class PlaceOrder extends Component {
       event.target.value = 0;
     }
     var new_array = this.state.food_data.map(food => {
-      if (food._id == foodid) {
+      if (food._id === foodid) {
         food.order = parseInt(event.target.value);
       }
       return food;

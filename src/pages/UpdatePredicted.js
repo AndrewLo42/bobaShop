@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table, Container } from "reactstrap";
+import { Table, Container } from "reactstrap";
 import { socket } from "../header/header";
 class UpdatePredicted extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class UpdatePredicted extends Component {
   };
 
   componentDidMount() {
-    var state_current = this;
+    // var state_current = this;
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
   }
@@ -23,7 +23,7 @@ class UpdatePredicted extends Component {
   sendPredQty = id => {
     var predicted_details;
     this.state.food_data.map(food => {
-      if (food._id == id) {
+      if (food._id === id) {
         predicted_details = food;
       }
       return food;
@@ -37,7 +37,7 @@ class UpdatePredicted extends Component {
       event.target.value = 0;
     }
     var new_array = this.state.food_data.map(food => {
-      if (food._id == foodid) {
+      if (food._id === foodid) {
         food.predQty = parseInt(event.target.value);
       }
       return food;
