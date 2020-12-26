@@ -1,0 +1,27 @@
+.header-nav {
+  list-style: none;
+  border-bottom: 1px solid pink;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+.header-nav li {
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 20px;
+  color: black;
+}
+
+.header-nav li a {
+  height: 30px;
+  text-decoration: none;
+  color:black;
+}
+
+.header-nav li a:hover {
+  color: pink;
+}
+
+.header-icon {
+  width: 30px;
+}
