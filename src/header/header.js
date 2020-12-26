@@ -18,14 +18,15 @@ class Header extends Component {
     return (
       <header>
         <nav>
-          <ul className="NavClass">
+          <ul className="header-nav">
             <li>
               <NavLink exact to="/">
+                <img className="header-icon" src="../images/bobaIcon.png"></img>
                 Place Order
               </NavLink>
             </li>
             <li>
-              <NavLink to="/updatepredicted">Change Predicted </NavLink>
+              <NavLink to="/manage">Inventory </NavLink>
             </li>
             <li>
               <NavLink to="/kitchen"> Kitchen </NavLink>

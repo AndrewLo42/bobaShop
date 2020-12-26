@@ -76,7 +76,7 @@ class UpdatePredicted extends Component {
   render() {
     return (
       <Container>
-        <h2 className="h2Class">Update Predicted</h2>
+        <h2 className="h2Class">Update Inventory</h2>
         <Table striped>
           <thead>
             <tr>
