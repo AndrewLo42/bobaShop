@@ -22,8 +22,10 @@ class Header extends Component {
             <li>
               <NavLink exact to="/">
                 <img className="header-icon" src="../images/bobaIcon.png"></img>
-                Place Order
               </NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Menu </NavLink>
             </li>
             <li>
               <NavLink to="/manage">Inventory </NavLink>

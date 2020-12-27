@@ -1,13 +1,20 @@
+.App {
+  background-color: beige;
+  min-height: 100vh;
+}
 .header-nav {
   list-style: none;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid rosybrown;
   display: flex;
   flex-direction: row;
   padding: 1rem;
+  background-color: rgb(212, 184, 184);
 }
 .header-nav li {
   display: inline-block;
   text-decoration: none;
+  margin: auto;
+  margin-left: 0;
   margin-right: 20px;
   color: black;
 }
@@ -16,6 +23,7 @@
   height: 30px;
   text-decoration: none;
   color:black;
+  transition: all 250ms linear;
 }
 
 .header-nav li a:hover {
