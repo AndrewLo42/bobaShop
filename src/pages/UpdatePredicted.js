@@ -81,12 +81,16 @@ class UpdatePredicted extends Component {
           <thead>
             <tr>
               <th>Product</th>
-              <th>Predicted Qty</th>
+              <th>Current Qty</th>
               <th>Update</th>
             </tr>
           </thead>
           <tbody>{this.getFoodData()}</tbody>
         </Table>
+        <div>
+          <h4 className="mt-4">Add New Item</h4>
+          <button>Add Item</button>
+        </div>
       </Container>
     );
   }

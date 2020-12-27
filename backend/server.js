@@ -84,6 +84,17 @@ io.on("connection", socket => {
       });
   });
 
+  //adds new menu items
+  socket.on("AddMenuItem", new_item => {
+    collection_foodItems
+      .insert(
+        { name: new_item.name },
+        { predQty: new_item.currentQty },
+        { prodQty: 0 },
+        { ordQty: 0 }
+      )
+  })
+
   // disconnect is fired when a client leaves the server
   socket.on("disconnect", () => {
     console.log("user disconnected");
