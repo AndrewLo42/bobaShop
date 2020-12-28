@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
 import { socket } from "../header/header";
+
+import AddItem from './components/addItem';
 class UpdatePredicted extends Component {
   constructor() {
     super();
@@ -89,7 +91,8 @@ class UpdatePredicted extends Component {
         </Table>
         <div>
           <h4 className="mt-4">Add New Item</h4>
-          <button>Add Item</button>
+          <button >Add Item</button>
+          <AddItem />
         </div>
       </Container>
     );
