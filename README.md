@@ -14,3 +14,4 @@ Food Images from Google and main assets from [@AudioJackal](https://www.instagra
 - User can order a product
 - User can checkout and choose pick up or delivery
 - User can see live inventory count 
+- Certain Users can add new menu items
