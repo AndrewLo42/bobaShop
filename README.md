@@ -15,3 +15,6 @@ Food Images from Google and main assets from [@AudioJackal](https://www.instagra
 - User can checkout and choose pick up or delivery
 - User can see live inventory count 
 - Certain Users can add new menu items
+-- Will be gated by password rather than accounts for now
+- Similarly, certain Users will be able to edit items
+- Users can view an "About Us" page with links! 
