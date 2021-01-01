@@ -3,7 +3,7 @@ import { Table, Container } from "reactstrap";
 import { socket } from "../header/header";
 
 import AddItem from './components/addItem';
-class UpdatePredicted extends Component {
+class UpdateItems extends Component {
   constructor() {
     super();
     this.state = {
@@ -99,4 +99,4 @@ class UpdatePredicted extends Component {
   }
 }
 
-export default UpdatePredicted;
+export default UpdateItems;

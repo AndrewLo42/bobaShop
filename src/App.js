@@ -4,7 +4,7 @@ import { Header } from "./header/header.js";
 import { Switch, Route } from "react-router-dom";
 
 import PlaceOrder from "./pages/PlaceOrder";
-import UpdatePredicted from "./pages/UpdatePredicted";
+import UpdateItems from "./pages/UpdateItems";
 import Kitchen from "./pages/Kitchen";
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={PlaceOrder} />
-          <Route path="/manage" component={UpdatePredicted} />
+          <Route path="/manage" component={UpdateItems} />
           <Route path="/kitchen" component={Kitchen} />
         </Switch>
       </div>

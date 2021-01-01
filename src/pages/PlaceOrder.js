@@ -61,6 +61,7 @@ class PlaceOrder extends Component {
       return (
         <tr key={food._id}>
           <td> {food.name} </td>
+          <td> ${food.price} </td>
           <td>
             <input
               onChange={e => this.changeQuantity(e, food._id)}
@@ -84,6 +85,7 @@ class PlaceOrder extends Component {
           <thead>
             <tr>
               <th>Product</th>
+              <th>Price</th>
               <th>Quantity</th>
               <th>Order</th>
             </tr>

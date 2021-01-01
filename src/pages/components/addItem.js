@@ -7,23 +7,33 @@ class AddItem extends Component {
     super();
     this.state = {
       name: '',
-      currentQty: '0'
+      currentQty: '',
+      price: ''
       // this is where we are connecting to with sockets,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleNewItem = this.handleNewItem.bind(this);
   }
 
   handleChange(event) {
     let intReg = /^\d+$/;
     if(event.target.name === "name"){
       this.setState({name: event.target.value})
-    } else if(event.target.name === "currentQty" && intReg.test(event.target.value)) {
+    } else if(event.target.name === "currentQty" && (intReg.test(event.target.value) || event.target.value === "")) {
       this.setState({currentQty: event.target.value})
+    } else if(event.target.name === "price" && (intReg.test(event.target.value) || event.target.value === "")) {
+      this.setState({price: event.target.value})
     }
   }
 
   handleNewItem(){
     let predicted_details = this.state;
+    this.setState({
+      name: '',
+      currentQty: '',
+      price: ''
+    })
+    console.log(predicted_details);
     socket.emit("AddMenuItem", predicted_details);
   }
 
@@ -35,8 +45,10 @@ class AddItem extends Component {
           <label>Item Name</label>
           <input value={this.state.name} name="name" onChange={this.handleChange} autoComplete="off"></input>
           <label>Item Quantity</label>
-          <input value={this.state.currentQty} name="currentQty" onChange={this.handleChange} autoComplete="off"></input>
-          <button className="submit-button mt-5">Add Item</button>
+          <input value={this.state.price} name="price" onChange={this.handleChange} autoComplete="off"></input>
+          <label>Item Price</label>
+          <input value={this.state.price} name="price" onChange={this.handleChange} autoComplete="off"></input>
+          <button onClick={this.handleNewItem} className="submit-button mt-5">Add Item</button>
         </div>
       </Container>
     )
