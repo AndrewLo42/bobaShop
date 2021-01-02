@@ -54,7 +54,7 @@ io.on("connection", socket => {
   // Placing the order, gets called from /src/main/PlaceOrder.js of Frontend
   socket.on("putOrder", order => {
     collection_foodItems
-      .update({ _id: order._id }, { $inc: { ordQty: order.order, predQty: -order.order } })
+      .update({ _id: order._id }, { $inc: { ordQty: order.order, prodQty: -order.order } })
       .then(updatedDoc => {
         // Emitting event to update the Kitchen opened across the devices with the realtime order values
         io.sockets.emit("change_data");
@@ -88,11 +88,15 @@ io.on("connection", socket => {
   socket.on("AddMenuItem", new_item => {
     collection_foodItems
       .insert([
-        { name: new_item.name, predQty: new_item.currentQty, prodQty: 0, ordQty: 0 }
+        { name: new_item.name, predQty: new_item.currentQty, price: new_item.price, prodQty: 0, ordQty: 0 }
       ])
       .then(updatedDoc => {
-        io.sockets.emit("get_data");
-      });
+        io.sockets.emit("change_data");
+      })
+      .catch( error => {
+        console.error(error);
+      }
+      );
   });
 
   // disconnect is fired when a client leaves the server
@@ -105,6 +109,6 @@ io.on("connection", socket => {
 
 app.use(express.static("build"));
 app.use("/kitchen", express.static("build"));
-app.use("/updatepredicted", express.static("build"));
+app.use("/manage", express.static("build"));
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
