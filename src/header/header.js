@@ -21,7 +21,7 @@ class Header extends Component {
           <ul className="header-nav">
             <li>
               <NavLink exact to="/">
-                <img className="header-icon" src="../images/bobaIcon.png"></img>
+                <img className="header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
               </NavLink>
             </li>
             <li>

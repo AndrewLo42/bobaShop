@@ -10,6 +10,18 @@ class UpdateItems extends Component {
       food_data: []
       // this is where we are connecting to with sockets,
     };
+    this.refreshData = this.refreshData.bind(this)
+  }
+  changeData = () => socket.emit("initial_data");
+  refreshData() {
+    socket.emit("initial_data");
+    socket.on("change_data", this.getData);
+  }
+  updateFood(newFoodArr) {
+    this.setState({food_data: newFoodArr});
+  }
+  sendMenuItem(newMenuItem) {
+    socket.emit("AddMenuItem", newMenuItem);
   }
 
   getData = foodItems => {
@@ -20,6 +32,7 @@ class UpdateItems extends Component {
     // var state_current = this;
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
+    socket.on("change_data", this.changeData);
   }
 
   sendPredQty = id => {
@@ -52,6 +65,9 @@ class UpdateItems extends Component {
   }
 
   getFoodData() {
+    if(!this.state.food_data) {
+      return (<div>loading...</div>)
+    }
     return this.state.food_data.map(food => {
       return (
         <tr key={food._id}>
@@ -90,9 +106,9 @@ class UpdateItems extends Component {
           <tbody>{this.getFoodData()}</tbody>
         </Table>
         <div>
-          <h4 className="mt-4">Add New Item</h4>
-          <button >Add Item</button>
-          <AddItem />
+          {/* <h4 className="mt-4">Add New Item</h4>
+          <button >Add Item</button> */}
+          <AddItem food_data={this.state.food_data} refreshData={this.refreshData} changeData={this.changeData} sendMenuItem={this.sendMenuItem}/>
         </div>
       </Container>
     );

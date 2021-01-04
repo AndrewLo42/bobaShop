@@ -54,7 +54,7 @@ io.on("connection", socket => {
   // Placing the order, gets called from /src/main/PlaceOrder.js of Frontend
   socket.on("putOrder", order => {
     collection_foodItems
-      .update({ _id: order._id }, { $inc: { ordQty: order.order, prodQty: -order.order } })
+      .update({ _id: order._id }, { $inc: { ordQty: order.order, predQty: -order.order } })
       .then(updatedDoc => {
         // Emitting event to update the Kitchen opened across the devices with the realtime order values
         io.sockets.emit("change_data");
