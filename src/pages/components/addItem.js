@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Container} from "reactstrap";
-import { socket } from "../../header/header";
+// import { socket } from "../../header/header";
 
 class AddItem extends Component {
   constructor() {
@@ -9,14 +9,13 @@ class AddItem extends Component {
       name: '',
       currentQty: '',
       price: ''
-      // this is where we are connecting to with sockets,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleNewItem = this.handleNewItem.bind(this);
   }
 
   handleChange(event) {
-    let intReg = /^\d+$/;
+    let intReg = /^(\d+)?([.]?\d{0,2})?$/;
     if(event.target.name === "name"){
       this.setState({name: event.target.value})
     } else if(event.target.name === "currentQty" && (intReg.test(event.target.value) || event.target.value === "")) {
@@ -26,7 +25,8 @@ class AddItem extends Component {
     }
   }
 
-  handleNewItem(){
+  handleNewItem(event){
+    event.preventDefault();
     let predicted_details = this.state;
     this.setState({
       name: '',
@@ -34,7 +34,9 @@ class AddItem extends Component {
       price: ''
     })
     console.log(predicted_details);
-    socket.emit("AddMenuItem", predicted_details);
+    // this.props.changeData();
+    // socket.emit("AddMenuItem", predicted_details);
+    this.props.sendMenuItem(predicted_details);
   }
 
   render() {
@@ -45,10 +47,10 @@ class AddItem extends Component {
           <label>Item Name</label>
           <input value={this.state.name} name="name" onChange={this.handleChange} autoComplete="off"></input>
           <label>Item Quantity</label>
-          <input value={this.state.price} name="price" onChange={this.handleChange} autoComplete="off"></input>
+          <input value={this.state.currentQty} name="currentQty" onChange={this.handleChange} autoComplete="off"></input>
           <label>Item Price</label>
           <input value={this.state.price} name="price" onChange={this.handleChange} autoComplete="off"></input>
-          <button onClick={this.handleNewItem} className="submit-button mt-5">Add Item</button>
+          <button onClick={(event) => {this.handleNewItem(event)}} className="submit-button mt-5">Add Item</button>
         </div>
       </Container>
     )
