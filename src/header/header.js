@@ -8,7 +8,8 @@ class Header extends Component {
   constructor() {
     super();
     this.state = {
-      endpoint: "http://localhost:3001/" // Update 3001 with port on which backend-my-app/server.js is running.
+      endpoint: "http://localhost:3001/", // Update 3001 with port on which backend-my-app/server.js is running.
+      isEmployee: false
     };
 
     socket = socketIOClient(this.state.endpoint);
@@ -33,6 +34,7 @@ class Header extends Component {
             <li>
               <NavLink to="/kitchen"> Kitchen </NavLink>
             </li>
+            <li>Staff Login</li> {/* click to open login code modal*/ }
           </ul>
         </nav>
       </header>

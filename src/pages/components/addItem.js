@@ -19,7 +19,11 @@ class AddItem extends Component {
     if(event.target.name === "name"){
       this.setState({name: event.target.value})
     } else if(event.target.name === "currentQty" && (intReg.test(event.target.value) || event.target.value === "")) {
-      this.setState({currentQty: event.target.value})
+      if(event.target.value === "." || event.target.value === ""){
+        this.setState({currentQty: 0})
+      } else {
+        this.setState({currentQty: parseFloat(event.target.value)})
+      }
     } else if(event.target.name === "price" && (intReg.test(event.target.value) || event.target.value === "")) {
       this.setState({price: event.target.value})
     }
@@ -27,7 +31,11 @@ class AddItem extends Component {
 
   handleNewItem(event){
     event.preventDefault();
-    let predicted_details = this.state;
+    let predicted_details = {
+      name: this.state.name,
+      currentQty: parseFloat(this.state.currentQty),
+      price: parseFloat(this.state.price)
+    };
     this.setState({
       name: '',
       currentQty: '',
