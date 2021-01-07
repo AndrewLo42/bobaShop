@@ -15,6 +15,30 @@ class Header extends Component {
     socket = socketIOClient(this.state.endpoint);
   }
 
+  renderStaffNav() {
+    if(this.state.isEmployee){
+      return(
+        <>
+          <li>
+            <NavLink exact to="/">
+              <img className="header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/">Menu </NavLink>
+          </li>
+          <li>
+            <NavLink to="/manage">Inventory </NavLink>
+          </li>
+          <li>
+            <NavLink to="/kitchen"> Kitchen </NavLink>
+          </li>
+        </>
+      )
+      return null;
+    }
+  }
+
   render() {
     return (
       <header>
@@ -25,7 +49,7 @@ class Header extends Component {
                 <img className="header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
               </NavLink>
             </li>
-            <li>
+            {/*<li>
               <NavLink to="/">Menu </NavLink>
             </li>
             <li>
@@ -33,8 +57,9 @@ class Header extends Component {
             </li>
             <li>
               <NavLink to="/kitchen"> Kitchen </NavLink>
-            </li>
-            <li>Staff Login</li> {/* click to open login code modal*/ }
+            </li> */}
+            {this.renderStaffNav()}
+            <li onClick={()=>{this.setState({isEmployee: !this.state.isEmployee})}}>Staff Login</li> {/* click to open login code modal*/ }
           </ul>
         </nav>
       </header>
