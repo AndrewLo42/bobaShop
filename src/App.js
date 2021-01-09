@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 // import "./App.css";
-import { Header } from "./header/header.js";
+import { Header } from "./global/header.js";
 import { Switch, Route } from "react-router-dom";
 
 import PlaceOrder from "./pages/PlaceOrder";
 import UpdateItems from "./pages/UpdateItems";
 import Kitchen from "./pages/Kitchen";
+import Footer from "./global/footer.js";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/manage" component={UpdateItems} />
           <Route path="/kitchen" component={Kitchen} />
         </Switch>
+        <Footer/>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
-import { socket } from "../header/header";
+import { socket } from "../global/header";
 
 import AddItem from './components/addItem';
 class UpdateItems extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
-import { socket } from "../header/header";
+import { socket } from "../global/header";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 class Kitchen extends Component {
   constructor() {

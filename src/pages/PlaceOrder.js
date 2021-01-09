@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
-import { socket } from "../header/header";
+import { socket } from "../global/header";
 class PlaceOrder extends Component {
   constructor() {
     super();
