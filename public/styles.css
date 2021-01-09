@@ -2,6 +2,14 @@
   background-color: beige;
   min-height: 100vh;
 }
+.footer-container {
+  padding: 2rem;
+  background-color:  rgb(212, 184, 184);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid rosybrown;
+}
 .header-nav {
   list-style: none;
   border-bottom: 1px solid rosybrown;
@@ -9,6 +17,7 @@
   flex-direction: row;
   padding: 1rem;
   background-color: rgb(212, 184, 184);
+  justify-content: space-between;
 }
 .header-nav li {
   display: inline-block;
@@ -17,6 +26,7 @@
   margin-left: 0;
   margin-right: 20px;
   color: black;
+  cursor: pointer;
 }
 
 .header-nav li a {
@@ -28,6 +38,14 @@
 
 .header-nav li a:hover {
   color: pink;
+}
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+.staff-login {
+  font-size: 16px;
 }
 
 .header-icon {

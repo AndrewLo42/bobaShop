@@ -18,25 +18,17 @@ class Header extends Component {
   renderStaffNav() {
     if(this.state.isEmployee){
       return(
-        <>
-          <li>
-            <NavLink exact to="/">
-              <img className="header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Menu </NavLink>
-          </li>
+        <div className="staff-nav main-nav">
           <li>
             <NavLink to="/manage">Inventory </NavLink>
           </li>
           <li>
             <NavLink to="/kitchen"> Kitchen </NavLink>
           </li>
-        </>
+        </div>
       )
-      return null;
     }
+    return (<li onClick={()=>{this.setState({isEmployee: !this.state.isEmployee})}} className="staff-login" >Staff Login</li>);
   }
 
   render() {
@@ -46,20 +38,15 @@ class Header extends Component {
           <ul className="header-nav">
             <li>
               <NavLink exact to="/">
-                <img className="header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
+                <img className="ml-2 header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
               </NavLink>
             </li>
-            {/*<li>
-              <NavLink to="/">Menu </NavLink>
-            </li>
-            <li>
-              <NavLink to="/manage">Inventory </NavLink>
-            </li>
-            <li>
-              <NavLink to="/kitchen"> Kitchen </NavLink>
-            </li> */}
-            {this.renderStaffNav()}
-            <li onClick={()=>{this.setState({isEmployee: !this.state.isEmployee})}}>Staff Login</li> {/* click to open login code modal*/ }
+            <div className="main-nav">
+              {this.renderStaffNav()}
+              <li>
+                <NavLink to="/">Menu </NavLink>
+              </li>
+            </div>
           </ul>
         </nav>
       </header>
