@@ -50,6 +50,7 @@ class PlaceOrder extends Component {
     var new_array = this.state.food_data.map(food => {
       if (food._id === foodid) {
         food.order = parseInt(event.target.value);
+        food.total = parseFloat(food.order * food.price).toFixed(2);
       }
       return food;
     });
@@ -58,6 +59,10 @@ class PlaceOrder extends Component {
   // To get the initial data
   getFoodData() {
     return this.state.food_data.map(food => {
+      let foodTotal = 0.00;
+      if (food.total) {
+        foodTotal = food.total
+      }
       return (
         <tr key={food._id}>
           <td> {food.name} </td>
@@ -70,6 +75,7 @@ class PlaceOrder extends Component {
               placeholder="Quantity"
             />
           </td>
+          <td> ${foodTotal} </td>
           <td>
             <button onClick={() => this.sendOrder(food._id)}>Order</button>
           </td>
@@ -87,6 +93,7 @@ class PlaceOrder extends Component {
               <th>Product</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Total</th>
               <th>Order</th>
             </tr>
           </thead>

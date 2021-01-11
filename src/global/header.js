@@ -41,7 +41,7 @@ class Header extends Component {
                 <img className="ml-2 header-icon" src="../images/bobaIcon.png" alt="Boba icon that acts as a home button."></img>
               </NavLink>
             </li>
-            <div className="main-nav">
+            <div className="main-nav main-nav-container">
               {this.renderStaffNav()}
               <li>
                 <NavLink to="/">Menu </NavLink>
