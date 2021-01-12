@@ -7,6 +7,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import UpdateItems from "./pages/UpdateItems";
 import Kitchen from "./pages/Kitchen";
 import Footer from "./global/footer.js";
+import Menu from "./pages/Menu.js";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route exact path="/" component={PlaceOrder} />
           <Route path="/manage" component={UpdateItems} />
           <Route path="/kitchen" component={Kitchen} />
+          <Route path="/menu" component={Menu} />
         </Switch>
         <Footer/>
       </div>
