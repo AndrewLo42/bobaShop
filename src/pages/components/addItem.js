@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Container} from "reactstrap";
+import UploadForm from "./imageUpload";
 // import { socket } from "../../global/header";
 
 class AddItem extends Component {
@@ -58,6 +59,7 @@ class AddItem extends Component {
           <input value={this.state.currentQty} name="currentQty" onChange={this.handleChange} autoComplete="off"></input>
           <label>Item Price</label>
           <input value={this.state.price} name="price" onChange={this.handleChange} autoComplete="off"></input>
+          <UploadForm />
           <button onClick={(event) => {this.handleNewItem(event)}} className="submit-button mt-5">Add Item</button>
         </div>
       </Container>

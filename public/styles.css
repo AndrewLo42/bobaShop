@@ -71,3 +71,10 @@
   width: 25%;
   margin: auto;
 }
+
+.preview-image {
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  object-fit: contain;
+}
