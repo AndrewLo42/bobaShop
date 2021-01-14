@@ -5,7 +5,7 @@
 .footer-container {
   display: flex;
   justify-content: space-between;
-  padding: 3rem;
+  padding: 2rem;
   background-color:  rgb(212, 184, 184);
   position: absolute;
   bottom: 0;

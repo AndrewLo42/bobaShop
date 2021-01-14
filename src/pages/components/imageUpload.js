@@ -6,6 +6,7 @@ export default class UploadForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pictureBlob: "",
       currentPicture: ""
     };
     this.previewFile = this.previewFile.bind(this);
@@ -30,7 +31,10 @@ export default class UploadForm extends Component {
     }, false);
 
     if (file) {
-      this.setState({currentPicture: URL.createObjectURL(file)})
+      this.setState({
+        pictureBlob: URL.createObjectURL(file),
+        currentPicture: btoa((file))
+      })
       reader.readAsDataURL(file);
     }
   }
