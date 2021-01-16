@@ -1,4 +1,5 @@
 import React, {Component, useState} from 'react';
+import { socket } from "../../global/header";
 // import PlaceHolderImage from '../images/placeholder-image-square.jpg';
 
 export default class UploadForm extends Component {
@@ -10,6 +11,8 @@ export default class UploadForm extends Component {
       currentPicture: ""
     };
     this.previewFile = this.previewFile.bind(this);
+
+    this.updateImage = this.updateImage.bind(this);
   }
 
   handleSubmit() {
@@ -17,8 +20,15 @@ export default class UploadForm extends Component {
       return;
     }
     document.querySelector('#ImagePreview').src = "../images/placeholder-image-square.jpg";
+    socket.emit("UploadImage", this.state.currentPicture);
     this.setState({currentPicture: ""});
-    this.props.uploadPicture(this.state.currentPicture)
+    // this.props.uploadPicture(this.state.currentPicture)
+  }
+
+  updateImage(imgData) {
+    this.setState({
+      currentPicture: imgData
+    })
   }
 
   previewFile() {
@@ -33,9 +43,9 @@ export default class UploadForm extends Component {
     if (file) {
       this.setState({
         pictureBlob: URL.createObjectURL(file),
-        currentPicture: btoa((file))
+        currentPicture: preview.src
       })
-      reader.readAsDataURL(file);
+      // reader.readAsDataURL(file);
     }
   }
 
