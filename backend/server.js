@@ -5,7 +5,10 @@ const socketIO = require("socket.io");
 
 const mongo = require("mongodb")
 
+//need to put into env file later
 var connection_string = "mongodb+srv://bobaShopOwner:jasminetea@cluster0.mluwe.mongodb.net/Menu?retryWrites=true&w=majority"
+
+var imgur = require("imgur");
 
 // Connection string of MongoDb database hosted on Mlab or locally
 // Collection name should be "FoodItems", only one collection as of now.
@@ -84,6 +87,19 @@ io.on("connection", socket => {
       });
   });
 
+  //testing imgur api
+  socket.on("UploadImage", imageBase => {
+// A single image
+    console.log(imageBase)
+    imgur.uploadFile(imageBase)
+        .then(function (json) {
+            console.log(json.data.link);
+        })
+        .catch(function (err) {
+            console.error(err.message);
+        });
+  })
+
   //adds new menu items
   socket.on("AddMenuItem", new_item => {
     collection_foodItems
@@ -97,6 +113,19 @@ io.on("connection", socket => {
         console.error(error);
       }
       );
+  });
+
+  //deletes menu items
+  socket.on("DeleteMenuItem", id => {
+    collection_foodItems
+      .remove({_id: id})
+      .then(updatedDoc => {
+        //Updating the different Kitchen area with the current Status.
+        io.sockets.emit("change_data");
+      })
+      .catch(error => {
+        console.error(error);
+      });
   });
 
   // disconnect is fired when a client leaves the server

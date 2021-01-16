@@ -10,7 +10,8 @@ class UpdateItems extends Component {
       food_data: []
       // this is where we are connecting to with sockets,
     };
-    this.refreshData = this.refreshData.bind(this)
+    this.refreshData = this.refreshData.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
   changeData = () => socket.emit("initial_data");
   refreshData() {
@@ -33,6 +34,10 @@ class UpdateItems extends Component {
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
     socket.on("change_data", this.changeData);
+  }
+
+  deleteItem = (id) => {
+    socket.emit("DeleteMenuItem", id);
   }
 
   sendPredQty = id => {
@@ -86,6 +91,11 @@ class UpdateItems extends Component {
               Update Qty
             </button>
           </td>
+          <td>
+            <button onClick={() => this.deleteItem(food._id)}>
+              Remove Item
+            </button>
+          </td>
         </tr>
       );
     });
@@ -101,6 +111,7 @@ class UpdateItems extends Component {
               <th>Product</th>
               <th>Current Qty</th>
               <th>Update</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>{this.getFoodData()}</tbody>
