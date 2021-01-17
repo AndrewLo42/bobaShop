@@ -45,7 +45,7 @@ export default class UploadForm extends Component {
         pictureBlob: URL.createObjectURL(file),
         currentPicture: preview.src
       })
-      // reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
     }
   }
 

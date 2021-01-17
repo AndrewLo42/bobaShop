@@ -103,7 +103,7 @@ class UpdateItems extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="inventory-container">
         <h2 className="h2Class">Update Inventory</h2>
         <Table striped>
           <thead>

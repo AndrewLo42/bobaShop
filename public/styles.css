@@ -1,6 +1,7 @@
 .App {
   background-color: beige;
   min-height: 100vh;
+  position:relative
 }
 .footer-container {
   display: flex;
@@ -77,4 +78,29 @@
   height: 350px;
   margin: auto;
   object-fit: contain;
+}
+
+.submit-button {
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid rosybrown;
+  color: rosybrown;
+  letter-spacing:1px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px;
+  margin: 10px auto;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+
+}
+
+.inventory-container {
+  min-height: 99vh;
 }
