@@ -90,10 +90,11 @@ io.on("connection", socket => {
   //testing imgur api
   socket.on("UploadImage", imageBase => {
 // A single image
-    console.log(imageBase)
-    imgur.uploadFile(imageBase)
+    // console.log(imageBase)
+    imgur.uploadBase64(imageBase)
         .then(function (json) {
             console.log(json.data.link);
+            io.sockets.emit("get_image_link", json.data.link);
         })
         .catch(function (err) {
             console.error(err.message);
@@ -104,7 +105,7 @@ io.on("connection", socket => {
   socket.on("AddMenuItem", new_item => {
     collection_foodItems
       .insert([
-        { name: new_item.name, predQty: new_item.currentQty, price: new_item.price, prodQty: 0, ordQty: 0 }
+        { name: new_item.name, predQty: new_item.currentQty, price: new_item.price, prodQty: 0, ordQty: 0, image: new_item.image }
       ])
       .then(updatedDoc => {
         io.sockets.emit("change_data");
