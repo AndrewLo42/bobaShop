@@ -20,7 +20,7 @@ export default class UploadForm extends Component {
       return;
     }
     document.querySelector('#ImagePreview').src = "../images/placeholder-image-square.jpg";
-    socket.emit("UploadImage", this.state.currentPicture);
+    socket.emit("UploadImage", this.state.currentPicture.replace(/^data:image\/(png|jpg);base64,/, ""));
     this.setState({currentPicture: ""});
     // this.props.uploadPicture(this.state.currentPicture)
   }
@@ -35,17 +35,17 @@ export default class UploadForm extends Component {
     const preview = document.querySelector('#ImagePreview');
     const file = document.querySelector('input[type=file]').files[0];
     const reader = new FileReader();
-
-    reader.addEventListener("load", function () {
+    reader.readAsDataURL(file);
+    reader.addEventListener("loadend",  () => {
       preview.src = reader.result.toString();
+      this.setState({currentPicture: reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "")})
     }, false);
 
     if (file) {
       this.setState({
-        pictureBlob: URL.createObjectURL(file),
-        currentPicture: preview.src
+        pictureBlob: URL.createObjectURL(file)
       })
-      reader.readAsDataURL(file);
+      // reader.readAsDataURL(file);
     }
   }
 

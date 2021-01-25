@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Container} from "reactstrap";
 import UploadForm from "./imageUpload";
-// import { socket } from "../../global/header";
+import { socket } from "../../global/header";
 
 class AddItem extends Component {
   constructor() {
@@ -9,10 +9,20 @@ class AddItem extends Component {
     this.state = {
       name: '',
       currentQty: '',
-      price: ''
+      price: '',
+      image: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleNewItem = this.handleNewItem.bind(this);
+    this.updateImage = this.updateImage.bind(this);
+  }
+  componentDidMount() {
+    socket.on("get_image_link", this.updateImage);
+  }
+
+  updateImage(link) {
+    console.log("image got")
+    this.setState({image: link});
   }
 
   handleChange(event) {
@@ -40,7 +50,8 @@ class AddItem extends Component {
     this.setState({
       name: '',
       currentQty: '',
-      price: ''
+      price: '',
+      image: ''
     })
     console.log(predicted_details);
     // this.props.changeData();
