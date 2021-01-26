@@ -45,7 +45,8 @@ class AddItem extends Component {
     let predicted_details = {
       name: this.state.name,
       currentQty: parseFloat(this.state.currentQty),
-      price: parseFloat(this.state.price)
+      price: parseFloat(this.state.price),
+      image: this.state.image
     };
     this.setState({
       name: '',

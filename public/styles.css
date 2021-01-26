@@ -104,3 +104,8 @@
 .inventory-container {
   min-height: 99vh;
 }
+
+.card-image {
+  width: 50%;
+  height: 50%;
+}
