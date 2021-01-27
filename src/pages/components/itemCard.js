@@ -35,8 +35,8 @@ class MenuItem extends React.Component {
         <div className="card-text ">
           Delicious Drink
           {/* <p className="mt-1" onClick={this.setProductView}>{this.props.product.shortDescription}</p> */}
-          <div className="row justify-content-around">
-            <button>Add to Order</button>
+          <div className="row justify-content-around m-3">
+            <button onClick={(e) => this.props.changeQuantity(e, this.props.food._id)}>Add to Order</button>
             {/* <button className="mt-2 btn btn-primary" onClick={this.setProductView}>Details</button>
             <button className="mt-2 btn btn-secondary add-btn" onClick={this.addItemToCart}>Quick Add</button> */}
           </div>

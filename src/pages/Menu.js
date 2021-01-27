@@ -45,12 +45,13 @@ class Menu extends Component {
   };
   // Changing the quantity in the state which is emitted to the backend at the time of placing the order.
   changeQuantity = (event, foodid) => {
-    if (parseInt(event.target.value) < 0) {
-      event.target.value = 0;
-    }
+    // if (parseInt(event.target.value) < 0) {
+    //   event.target.value = 0;
+    // }
     var new_array = this.state.food_data.map(food => {
       if (food._id === foodid) {
-        food.order = parseInt(event.target.value);
+        // food.order = parseInt(event.target.value);
+        food.order++;
         food.total = parseFloat(food.order * food.price).toFixed(2);
       }
       return food;
@@ -65,7 +66,7 @@ class Menu extends Component {
         foodTotal = food.total
       }
       return (
-        <MenuItem key={food._id} food={food}/>
+        <MenuItem key={food._id} food={food} changeQuantity={this.changeQuantity}/>
       );
     });
   }
@@ -75,6 +76,8 @@ class Menu extends Component {
       <Container>
         <h2 className="h2Class text-center">Order Menu</h2>
         {this.getMenuItems()}
+        <h2>Cart</h2>
+        <div>Foods</div>
       </Container>
     );
   }
