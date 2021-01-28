@@ -18,7 +18,7 @@ class MenuItem extends React.Component {
 
   render() {
     return (
-      <div className="card item-card col-lg-4 col-md-5 col-sm-6 col-xs-12 shadow-sm" >
+      <div className="card item-card col-lg-4 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
         <div className="text-center">
           {/* <img className="card-img-top card-img pt-1"  ></img> */}
           <div className="card-body">

@@ -6,7 +6,8 @@ class Menu extends Component {
   constructor() {
     super();
     this.state = {
-      food_data: []
+      food_data: [],
+      total: 0
       // this is where we are connecting to with sockets,
     };
   }
@@ -53,6 +54,7 @@ class Menu extends Component {
         // food.order = parseInt(event.target.value);
         food.order++;
         food.total = parseFloat(food.order * food.price).toFixed(2);
+        this.setState({total: (this.state.total+food.price)})
       }
       return food;
     });
@@ -70,14 +72,38 @@ class Menu extends Component {
       );
     });
   }
+  getFoodOrders() {
+    return this.state.food_data.map(food => {
+      return (
+        <div key={food._id} className="d-flex justify-content-center">
+          <span className="mr-2">
+            {food.name}
+          </span>
+          <span>
+            {food.order}
+          </span>
+        </div>
+      );
+    });
+  }
+
+  getTotalPrice() {
+    return parseFloat(this.state.total).toFixed(2);
+  }
 
   render() {
     return (
       <Container>
         <h2 className="h2Class text-center">Order Menu</h2>
-        {this.getMenuItems()}
-        <h2>Cart</h2>
-        <div>Foods</div>
+        <div className="d-flex">
+          {this.getMenuItems()}
+        </div>
+        <div className="text-center">
+          <h2>Cart</h2>
+          {this.getFoodOrders()}
+          <h3>Total</h3>
+          ${this.getTotalPrice()}
+        </div>
       </Container>
     );
   }
