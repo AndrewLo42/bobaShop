@@ -11,7 +11,8 @@ Food Images from Google and main assets from [@AudioJackal](https://www.instagra
 
 # Features
 - User can browse all products
-- User can order a product
+- User can add product to cart
+- User can view and edit cart items
 - User can checkout and choose pick up or delivery
 - User can see live inventory count 
 - Certain Users can add new menu items
