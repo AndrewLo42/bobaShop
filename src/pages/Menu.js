@@ -7,7 +7,8 @@ class Menu extends Component {
     super();
     this.state = {
       food_data: [],
-      total: 0
+      total: 0,
+      orders: []
       // this is where we are connecting to with sockets,
     };
   }
@@ -44,6 +45,16 @@ class Menu extends Component {
     });
     this.setState({ food_data: new_array });
   };
+
+  //function to add to cart
+  addToCart = foodid => {
+    let updatedOrder = [...this.state.order];
+    this.state.food_data.map(food => {
+      if (food._id === foodid) {
+        updatedOrder.push(food)
+      }
+    });
+  }
   // Changing the quantity in the state which is emitted to the backend at the time of placing the order.
   changeQuantity = (event, foodid) => {
     // if (parseInt(event.target.value) < 0) {
