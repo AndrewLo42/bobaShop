@@ -32,7 +32,7 @@ class MenuItem extends React.Component {
           </div>
         </div>
 
-        <div className="card-text ">
+        <div className="card-text p-4">
           Delicious Drink
           {/* <p className="mt-1" onClick={this.setProductView}>{this.props.product.shortDescription}</p> */}
           <div className="row justify-content-around m-3">

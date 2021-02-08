@@ -29,21 +29,23 @@ class Menu extends Component {
     socket.off("get_data", this.getData);
   }
   //Function to place the order.
-  sendOrder = id => {
-    var order_details;
-    this.state.food_data.map(food => {
-      if (food._id === id) {
-        order_details = food;
-      }
-      return food;
-    });
-    console.log(order_details);
-    socket.emit("putOrder", order_details);
-    var new_array = this.state.food_data.map(food => {
-      food.order = 0;
-      return food;
-    });
-    this.setState({ food_data: new_array });
+  sendOrder = () => {
+    var order_details = this.state.food_data;
+    console.log(order_details)
+    // var order_details;
+    // this.state.food_data.map(food => {
+    //   if (food._id === id) {
+    //     order_details = food;
+    //   }
+    //   return food;
+    // });
+    // console.log(order_details);
+    // // socket.emit("putOrder", order_details);
+    // var new_array = this.state.food_data.map(food => {
+    //   food.order = 0;
+    //   return food;
+    // });
+    // this.setState({ food_data: new_array });
   };
 
   //function to add to cart
@@ -106,7 +108,7 @@ class Menu extends Component {
     return (
       <Container>
         <h2 className="h2Class text-center">Order Menu</h2>
-        <div className="d-flex">
+        <div className="d-flex justify-content-center">
           {this.getMenuItems()}
         </div>
         <div className="text-center">
@@ -115,6 +117,9 @@ class Menu extends Component {
           <h3>Total</h3>
           ${this.getTotalPrice()}
         </div>
+        <Container className="d-flex justify-content-center pt-4">
+          <button onClick={this.sendOrder()}>Complete Order</button>
+        </Container>
       </Container>
     );
   }
