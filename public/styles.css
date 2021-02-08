@@ -106,6 +106,12 @@
 }
 
 .card-image {
-  width: 50%;
-  height: 50%;
+  /* width: 50%;
+  height: 50%; */
+  display: block;
+  max-width: 230px;
+  max-height: 215px;
+  width: auto;
+  height: auto;
+  margin: auto;
 }

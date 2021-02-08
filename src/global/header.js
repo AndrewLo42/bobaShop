@@ -44,7 +44,7 @@ class Header extends Component {
             <div className="main-nav main-nav-container">
               {this.renderStaffNav()}
               <li>
-                <NavLink to="/">Menu </NavLink>
+                <NavLink to="/menu">Menu </NavLink>
               </li>
             </div>
           </ul>
