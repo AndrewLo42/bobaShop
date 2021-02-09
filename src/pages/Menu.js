@@ -11,6 +11,7 @@ class Menu extends Component {
       orders: []
       // this is where we are connecting to with sockets,
     };
+    this.sendOrder = this.sendOrder.bind(this);
   }
   getData = foodItems => {
     console.log(foodItems);
@@ -87,16 +88,21 @@ class Menu extends Component {
   }
   getFoodOrders() {
     return this.state.food_data.map(food => {
-      return (
-        <div key={food._id} className="d-flex justify-content-center">
-          <span className="mr-2">
-            {food.name}
-          </span>
-          <span>
-            {food.order}
-          </span>
-        </div>
-      );
+      if(food.order){
+        return (
+          <div key={food._id} className="d-flex justify-content-center">
+            <span className="mx-4 col-sm text-right">
+              {food.order}
+            </span>
+            <span className="mx-5 col-sm text-center">
+              {food.name}
+            </span>
+            <span className="mx-4 col-sm text-right">
+              {food.total}
+            </span>
+          </div>
+        );
+      }
     });
   }
 
@@ -114,11 +120,11 @@ class Menu extends Component {
         <div className="text-center">
           <h2>Cart</h2>
           {this.getFoodOrders()}
-          <h3>Total</h3>
+          <h3 className="mt-3" >Total</h3>
           ${this.getTotalPrice()}
         </div>
         <Container className="d-flex justify-content-center pt-4">
-          <button onClick={this.sendOrder()}>Complete Order</button>
+          <button onClick={this.sendOrder}>Complete Order</button>
         </Container>
       </Container>
     );
