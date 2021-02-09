@@ -1,4 +1,5 @@
 import React from 'react';
+// import PlaceHolder from '../../../public/images/palceholder-image-square.jpg';
 
 class MenuItem extends React.Component {
   constructor(props) {
@@ -6,9 +7,9 @@ class MenuItem extends React.Component {
 
   }
 
-  addItemToCart() {
+  // addItemToCart() {
 
-  }
+  // }
 
 
   renderPrice() {
@@ -17,6 +18,7 @@ class MenuItem extends React.Component {
   }
 
   render() {
+    let cardImage = this.props.food.image ? this.props.food.image : "../../images/placeholder-image-square.jpg"
     return (
       <div className="card item-card col-lg-4 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
         <div className="text-center">
@@ -24,7 +26,7 @@ class MenuItem extends React.Component {
           <div className="card-body">
             <h3 className="card-title">{this.props.food.name}</h3>
             <div className="m-auto w-100 d-flex justify-content-center">
-              <img className="card-image" src={this.props.food.image} />
+              <img className="card-image" src={cardImage} />
             </div>
             <div className="mt-3 card-price text-muted">${this.props.food.price}</div>
           </div>
