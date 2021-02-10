@@ -7,11 +7,13 @@ class UpdateItems extends Component {
   constructor() {
     super();
     this.state = {
-      food_data: []
+      food_data: [],
+      addingItem: false
       // this is where we are connecting to with sockets,
     };
     this.refreshData = this.refreshData.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.toggleAdd = this.toggleAdd.bind(this);
   }
   changeData = () => socket.emit("initial_data");
   refreshData() {
@@ -101,6 +103,10 @@ class UpdateItems extends Component {
     });
   }
 
+  toggleAdd() {
+    this.setState({addingItem: !this.state.addingItem});
+  }
+
   render() {
     return (
       <Container className="inventory-container">
@@ -116,10 +122,13 @@ class UpdateItems extends Component {
           </thead>
           <tbody>{this.getFoodData()}</tbody>
         </Table>
-        <div>
-          {/* <h4 className="mt-4">Add New Item</h4>
-          <button >Add Item</button> */}
-          <AddItem food_data={this.state.food_data} refreshData={this.refreshData} changeData={this.changeData} sendMenuItem={this.sendMenuItem}/>
+        <div className="text-center">
+          <h4 className="mt-4 mb-3">Add New Item</h4>
+          <button onClick={()=>{this.toggleAdd()}}>Add Item</button>
+          {
+            this.state.addingItem ? (<AddItem food_data={this.state.food_data} refreshData={this.refreshData} changeData={this.changeData} sendMenuItem={this.sendMenuItem}/>) : null
+          }
+          {/* <AddItem food_data={this.state.food_data} refreshData={this.refreshData} changeData={this.changeData} sendMenuItem={this.sendMenuItem}/> */}
         </div>
       </Container>
     );
