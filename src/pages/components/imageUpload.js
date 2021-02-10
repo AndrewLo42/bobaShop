@@ -51,14 +51,14 @@ export default class UploadForm extends Component {
 
   render() {
     return(
-      <div className="half-container">
+      <div className="half-container mt-4">
         <div className="upload-form column">
           <div className="form-container column">
-            <h1>Upload Image</h1>
+            <h1 className="text-center">Upload Image</h1>
             <input type="file" name="file" id="file" onChange={this.previewFile} className="image-input"></input>
             <label className="submit-button" htmlFor="file">Choose a file</label>
             <img src="../images/placeholder-image-square.jpg" className="preview-image" alt="Image preview" id="ImagePreview"></img>
-            <div className="submit-button" onClick={() => this.handleSubmit()}>Submit</div>
+            <div className="submit-button" onClick={() => this.handleSubmit()}>Upload Image</div>
           </div>
         </div>
       </div>

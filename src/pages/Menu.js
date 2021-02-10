@@ -34,10 +34,12 @@ class Menu extends Component {
     var order_details = this.state.food_data;
     console.log(order_details)
     // var order_details;
-    // this.state.food_data.map(food => {
-    //   if (food._id === id) {
-    //     order_details = food;
-    //   }
+    this.state.food_data.map(food => {
+      console.log(food)
+    })
+      // if (food._id === id) {
+      //   order_details = food;
+      // }
     //   return food;
     // });
     // console.log(order_details);
@@ -47,7 +49,7 @@ class Menu extends Component {
     //   return food;
     // });
     // this.setState({ food_data: new_array });
-  };
+  }
 
   //function to add to cart
   addToCart = foodid => {

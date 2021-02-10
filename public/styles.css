@@ -1,3 +1,4 @@
+
 .App {
   background-color: beige;
   min-height: 100vh;
@@ -9,7 +10,7 @@
   padding: 2rem;
   background-color:  rgb(212, 184, 184);
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   width: 100%;
   border-top: 1px solid rosybrown;
 }
@@ -71,6 +72,19 @@
 .submit-button {
   width: 25%;
   margin: auto;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+
+.image-input {
+  width: .1px;
+  height: .1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .preview-image {
