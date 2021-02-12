@@ -62,7 +62,7 @@ class AddItem extends Component {
 
   render() {
     return(
-      <Container className="mt-5">
+      <Container className="mt-5 add-item-container">
         <h4 className="text-center">New Menu Item</h4>
         <div className="form-container">
           <label>Item Name</label>

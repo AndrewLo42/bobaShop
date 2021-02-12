@@ -114,7 +114,7 @@ class Menu extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="page-content">
         <h2 className="h2Class text-center">Order Menu</h2>
         <div className="d-flex justify-content-center">
           {this.getMenuItems()}

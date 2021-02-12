@@ -16,6 +16,7 @@ class UpdateItems extends Component {
     this.toggleAdd = this.toggleAdd.bind(this);
   }
   changeData = () => socket.emit("initial_data");
+
   refreshData() {
     socket.emit("initial_data");
     socket.on("change_data", this.getData);
@@ -23,7 +24,13 @@ class UpdateItems extends Component {
   updateFood(newFoodArr) {
     this.setState({food_data: newFoodArr});
   }
+
+  toggleAdd() {
+    this.setState({addingItem: !this.state.addingItem});
+  }
+
   sendMenuItem(newMenuItem) {
+    this.toggleAdd();
     socket.emit("AddMenuItem", newMenuItem);
   }
 
@@ -32,7 +39,6 @@ class UpdateItems extends Component {
   };
 
   componentDidMount() {
-    // var state_current = this;
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
     socket.on("change_data", this.changeData);
@@ -101,10 +107,6 @@ class UpdateItems extends Component {
         </tr>
       );
     });
-  }
-
-  toggleAdd() {
-    this.setState({addingItem: !this.state.addingItem});
   }
 
   render() {
