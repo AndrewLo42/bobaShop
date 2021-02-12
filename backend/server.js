@@ -29,6 +29,7 @@ db.then(() => {
 })
 
 const collection_foodItems = db.get("FoodItems");
+const collection_ordersList = db.get("OrdersList");
 
 // our localhost port
 const port = process.env.PORT || 3001;
@@ -63,6 +64,16 @@ io.on("connection", socket => {
         io.sockets.emit("change_data");
       });
   });
+
+  //Sends whole order/cart to kitchen
+  socket.on("sendOrder", order => {
+    collection_ordersList
+      .insert(order)
+      .then(updatedDoc => {
+        // Emitting event to update the Kitchen opened across the devices with the realtime order values
+        io.sockets.emit("change_data");
+      });
+  })
 
   // Order completion, gets called from /src/main/Kitchen.js
   socket.on("mark_done", id => {
