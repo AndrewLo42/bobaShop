@@ -55,6 +55,13 @@ io.on("connection", socket => {
     });
   });
 
+  // Returns orders
+  socket.on("getOrders", () => {
+    collection_ordersList.find({}).then(docs => {
+      io.sockets.emit("get_orders", docs);
+    });
+  });
+
   // Placing the order, gets called from /src/main/PlaceOrder.js of Frontend
   socket.on("putOrder", order => {
     collection_foodItems
@@ -68,7 +75,7 @@ io.on("connection", socket => {
   //Sends whole order/cart to kitchen
   socket.on("sendOrder", order => {
     collection_ordersList
-      .insert(order)
+      .insert({order})
       .then(updatedDoc => {
         // Emitting event to update the Kitchen opened across the devices with the realtime order values
         io.sockets.emit("change_data");
