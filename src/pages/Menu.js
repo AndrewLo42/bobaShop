@@ -37,6 +37,9 @@ class Menu extends Component {
     this.state.food_data.map(food => {
       console.log(food)
     })
+    socket.emit("sendOrder", order_details);
+    this.getData(this.state.food_data)
+    this.setState({total: 0})
       // if (food._id === id) {
       //   order_details = food;
       // }
