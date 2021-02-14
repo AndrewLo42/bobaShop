@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
 import { socket } from "../global/header";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import OrderCard from "./components/orderCard";
 class Kitchen extends Component {
   constructor() {
     super();
     this.state = {
-      food_data: []
+      food_data: [],
+      food_orders: []
       // this is where we are connecting to with sockets,
     };
   }
@@ -16,13 +18,23 @@ class Kitchen extends Component {
     this.setState({ food_data: foodItems });
   };
 
+  getOrders = orderList => {
+    console.log("orders", orderList)
+    this.setState({food_orders: orderList})
+  }
+
   changeData = () => socket.emit("initial_data");
+  updateOrders = () => socket.emit("getOrders");
 
   componentDidMount() {
     // var state_current = this;
     socket.emit("initial_data");
     socket.on("get_data", this.getData);
     socket.on("change_data", this.changeData);
+
+    socket.emit("initial_orders")
+    socket.on("get_orders", this.getOrders);
+    socket.on("update_orders", this.updateOrders);
   }
 
   componentWillUnmount() {
@@ -55,9 +67,17 @@ class Kitchen extends Component {
     });
   }
 
+  getOrderCards() {
+    return this.state.food_orders.map(customerOrder => {
+      return(
+        <OrderCard orderInfo={customerOrder.order}/>
+      )
+    })
+  }
+
   render() {
     return (
-      <Container>
+      <Container className="page-content">
         <h2 className="h2Class">Kitchen Area</h2>
         <ReactHTMLTableToExcel
           id="test-table-xls-button"
@@ -80,6 +100,10 @@ class Kitchen extends Component {
           </thead>
           <tbody>{this.getFoodData()}</tbody>
         </Table>
+        <div className="text-center">
+          <h1>Orders</h1>
+          <div>{this.getOrderCards()}</div>
+        </div>
       </Container>
     );
   }

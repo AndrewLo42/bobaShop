@@ -56,7 +56,7 @@ io.on("connection", socket => {
   });
 
   // Returns orders
-  socket.on("getOrders", () => {
+  socket.on("initial_orders", () => {
     collection_ordersList.find({}).then(docs => {
       io.sockets.emit("get_orders", docs);
     });
@@ -78,7 +78,7 @@ io.on("connection", socket => {
       .insert({order})
       .then(updatedDoc => {
         // Emitting event to update the Kitchen opened across the devices with the realtime order values
-        io.sockets.emit("change_data");
+        io.sockets.emit("update_orders");
       });
   })
 
