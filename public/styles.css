@@ -139,6 +139,19 @@ input[type='file'] {
   margin: auto;
 }
 
+.orders-card {
+  padding: 2rem;
+  border: 1px solid black;
+  margin: 1rem auto;
+  width: 50%;
+
+}
+
+.order-title {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 
 @keyframes fade-in {
   0% {opacity: 0;}
