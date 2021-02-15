@@ -70,7 +70,7 @@ class Kitchen extends Component {
   getOrderCards() {
     return this.state.food_orders.map(customerOrder => {
       return(
-        <OrderCard orderInfo={customerOrder.order}/>
+        <OrderCard orderInfo={customerOrder.order} orderId={customerOrder._id.substr(customerOrder._id.length - 3)}/>
       )
     })
   }
