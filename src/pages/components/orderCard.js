@@ -10,7 +10,7 @@ class OrderCard extends Component {
     return this.props.orderInfo.map(order => {
       if(order.order > 0){
         return(
-          <div className="container">
+          <div className="container" key={order._id}>
             <div className="row px-5 mx-5 mt-3">
               <span className="col">{order.name}</span>
               <span className="col">{order.order}</span>

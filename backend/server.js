@@ -82,6 +82,15 @@ io.on("connection", socket => {
       });
   })
 
+  //complete an individual item on a whole order
+  socket.on("completeOrder", order => {
+    collection_foodItems
+      .update({id: order._id}, { $inc: {predQty: -order.order, prodQty: order.order}})
+      .then(updatedDoc => {
+        io.sockets.emit("change_data");
+      })
+  })
+
   // Order completion, gets called from /src/main/Kitchen.js
   socket.on("mark_done", id => {
     collection_foodItems
