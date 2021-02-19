@@ -1,8 +1,8 @@
 # bobaShop
 Live inventory for an online boba store front. 
-Food Images from Google and main assets from [@AudioJackal](https://www.instagram.com/audiojackal/)
+Images from Google & personal pictures. Main assets from [@AudioJackal](https://www.instagram.com/audiojackal/)
 
-# Work in Progress. 
+# Project Under Construction 
 - Site is not live and code is messy, but it will all get cleaned and wrapped up soon!
 
 # Technology
