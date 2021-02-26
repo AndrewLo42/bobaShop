@@ -4,9 +4,11 @@ const http = require("http");
 const socketIO = require("socket.io");
 
 const mongo = require("mongodb")
-
+const dotenv = require("dotenv");
+dotenv.config();
+var mongoUrl = process.env.MONGO_URL
 //need to put into env file later
-var connection_string = "mongodb+srv://bobaShopOwner:jasminetea@cluster0.mluwe.mongodb.net/Menu?retryWrites=true&w=majority"
+var connection_string = mongoUrl;
 
 var imgur = require("imgur");
 
@@ -84,10 +86,19 @@ io.on("connection", socket => {
 
   //complete an individual item on a whole order
   socket.on("completeOrder", order => {
+    console.log(order)
     collection_foodItems
-      .update({id: order._id}, { $inc: {predQty: -order.order, prodQty: order.order}})
+      .update({_id: order._id}, { $inc: {predQty: -order.order, prodQty: order.order}})
       .then(updatedDoc => {
         io.sockets.emit("change_data");
+      })
+  })
+  //deletes order entry
+  socket.on("finishOrder", id => {
+    collection_ordersList
+      .remove({_id: id})
+      .then(updateDoc => {
+        io.sockets.emit("update_orders");
       })
   })
 
