@@ -3,7 +3,18 @@ import React, { Component } from 'react';
 class OrderCard extends Component {
   constructor(props) {
     super(props);
+    this.completeOrder = this.completeOrder.bind(this);
+  }
 
+  completeOrder(orderItem, id) {
+    for(let i = 0; i < orderItem.length; i++){
+      if(orderItem[i].order > 0) {
+        this.props.sendOrder(orderItem[i]);
+      }
+      if(i === orderItem.length-1) {
+        this.props.finishOrder(id)
+      }
+    }
   }
 
   listOrders() {
@@ -28,7 +39,7 @@ class OrderCard extends Component {
           <div className="order-title">Order Number:</div>
           <div>{this.props.orderId}</div>
           {this.listOrders()}
-          <button className="mt-5">Complete Order</button>
+          <button onClick={() => this.completeOrder(this.props.orderInfo, this.props.orderDbId)} className="mt-5">Complete Order</button>
         </span>
       </div>
     )

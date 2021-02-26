@@ -24,7 +24,7 @@ class Kitchen extends Component {
   }
 
   changeData = () => socket.emit("initial_data");
-  updateOrders = () => socket.emit("getOrders");
+  updateOrders = () => socket.emit("initial_orders");
 
   componentDidMount() {
     // var state_current = this;
@@ -49,6 +49,16 @@ class Kitchen extends Component {
     }
   };
 
+  sendOrder = (request) => {
+    // socket.emit("sendOrder", request);
+    // console.log(request)
+    socket.emit("completeOrder", request);
+  }
+
+  finishOrder = (id) => {
+    socket.emit("finishOrder", id);
+    // console.log(id)
+  }
 
 
   getFoodData() {
@@ -70,7 +80,7 @@ class Kitchen extends Component {
   getOrderCards() {
     return this.state.food_orders.map(customerOrder => {
       return(
-        <OrderCard orderInfo={customerOrder.order} orderId={customerOrder._id.substr(customerOrder._id.length - 3)} key={customerOrder._id}/>
+        <OrderCard orderInfo={customerOrder.order} orderId={customerOrder._id.substr(customerOrder._id.length - 3)} key={customerOrder._id} orderDbId={customerOrder._id} sendOrder={this.sendOrder} finishOrder={this.finishOrder}/>
       )
     })
   }
