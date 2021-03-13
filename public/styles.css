@@ -153,8 +153,23 @@ input[type='file'] {
   margin-right: 10px;
 }
 
+.menu-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 @keyframes fade-in {
   0% {opacity: 0;}
   100% {opacity: 1;}
+}
+
+@media screen and (max-width: 40em) {
+
+  .menu-container {
+    flex-direction: column;
+  }
+  .item-card {
+    max-width: 95%;
+  }
+
 }
