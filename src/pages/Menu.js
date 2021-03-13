@@ -96,13 +96,13 @@ class Menu extends Component {
       if(food.order){
         return (
           <div key={food._id} className="d-flex justify-content-center">
-            <span className="mx-4 col-sm text-right">
+            <span className="mx-4 col-sm ">
               {food.order}
             </span>
             <span className="mx-5 col-sm text-center">
               {food.name}
             </span>
-            <span className="mx-4 col-sm text-right">
+            <span className="mx-4 col-sm ">
               {food.total}
             </span>
           </div>
