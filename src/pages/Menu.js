@@ -119,18 +119,20 @@ class Menu extends Component {
     return (
       <Container className="page-content">
         <h2 className="h2Class text-center">Order Menu</h2>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center menu-container">
           {this.getMenuItems()}
         </div>
-        <div className="text-center">
-          <h2>Cart</h2>
-          {this.getFoodOrders()}
-          <h3 className="mt-3" >Total</h3>
-          ${this.getTotalPrice()}
+        <div className="card-container">
+          <div className="text-center">
+            <h2>Cart</h2>
+            {this.getFoodOrders()}
+            <h3 className="mt-3" >Total</h3>
+            ${this.getTotalPrice()}
+          </div>
+          <Container className="d-flex justify-content-center pt-4">
+            <button onClick={this.sendOrder}>Complete Order</button>
+          </Container>
         </div>
-        <Container className="d-flex justify-content-center pt-4">
-          <button onClick={this.sendOrder}>Complete Order</button>
-        </Container>
       </Container>
     );
   }

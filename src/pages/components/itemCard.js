@@ -20,11 +20,11 @@ class MenuItem extends React.Component {
   render() {
     let cardImage = this.props.food.image ? this.props.food.image : "../../images/placeholder-image-square.jpg"
     return (
-      <div className="card item-card col-lg-4 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
+      <div className="card item-card col-lg-3 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
         <div className="text-center">
           {/* <img className="card-img-top card-img pt-1"  ></img> */}
           <div className="card-body">
-            <h3 className="card-title">{this.props.food.name}</h3>
+            <h4 className="card-title">{this.props.food.name}</h4>
             <div className="m-auto w-100 d-flex justify-content-center">
               <img className="card-image" src={cardImage} />
             </div>
