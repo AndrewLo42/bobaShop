@@ -3,7 +3,8 @@ Live inventory for an online boba store front.
 Images from Google & personal pictures. Main assets from [@AudioJackal](https://www.instagram.com/audiojackal/)
 
 # Project Under Construction 
-- Site is not live and code is messy, but it will all get cleaned and wrapped up soon!
+- Site is not live and the code is messy, but it will all get cleaned and wrapped up soon!
+- This personal project is mostly a playground for sockets and how to interact with MongoDB using socket.io
 
 # Technology
 - React
@@ -11,6 +12,8 @@ Images from Google & personal pictures. Main assets from [@AudioJackal](https://
 - MongoDB
 
 - Socket.io
+
+- Bootstrap
 
 # Features / Future Features
 - User can browse all products
