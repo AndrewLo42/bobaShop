@@ -1,9 +1,14 @@
 import React from 'react';
 // import PlaceHolder from '../../../public/images/palceholder-image-square.jpg';
+import AddOns from './addOnModal';
 
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showAdds: false
+    }
 
   }
 
@@ -17,8 +22,19 @@ class MenuItem extends React.Component {
     return `$ ${convertedPrice}`;
   }
 
+  submitOrder(e, food_id) {
+    this.props.changeQuantity(e, food_id)
+  }
+
   render() {
     let cardImage = this.props.food.image ? this.props.food.image : "../../images/placeholder-image-square.jpg"
+    if(this.state.showAdds){
+      return (
+         <div className="card item-card col-lg-3 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
+           <AddOns></AddOns>
+         </div>
+      )
+    }
     return (
       <div className="card item-card col-lg-3 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
         <div className="text-center">
@@ -38,11 +54,14 @@ class MenuItem extends React.Component {
           Delicious Drink
           {/* <p className="mt-1" onClick={this.setProductView}>{this.props.product.shortDescription}</p> */}
           <div className="row justify-content-around m-3">
-            <button onClick={(e) => this.props.changeQuantity(e, this.props.food._id)}>Add to Order</button>
+            {/* <button onClick={(e) => this.props.changeQuantity(e, this.props.food._id)}>Add to Order</button> */}
+            <button onClick={() => this.setState({showAdds: true})}>Adjust Drink</button>
+
             {/* <button className="mt-2 btn btn-primary" onClick={this.setProductView}>Details</button>
             <button className="mt-2 btn btn-secondary add-btn" onClick={this.addItemToCart}>Quick Add</button> */}
           </div>
         </div>
+
 
       </div>
     );
