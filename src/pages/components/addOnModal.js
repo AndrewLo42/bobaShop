@@ -12,8 +12,8 @@ class AddOns extends Component {
 
   render() {
     return(
-      <div className="add-modal" >
-        <div className="modal-dialog" >
+      <div className="add-modal p-2" >
+        <div className="" >
           <h4 className="modal-title">Drink Options</h4>
           <div><b>Sweetness</b></div>
           <div>
@@ -34,7 +34,9 @@ class AddOns extends Component {
             <div className={`select-button ${this.state.ice === 25 ? 'option-selected' : 'option-unselected'}`} onClick={()=>this.setState({ice: 25})}>25%</div>
             <div className={`select-button ${this.state.ice === 0 ? 'option-selected' : 'option-unselected'}`} onClick={()=>this.setState({ice: 0})}>0%</div>
           </div>
-          <button>Add to Order</button>
+          <div className="d-flex justify-content-center my-2">
+            <button onClick={(e) => this.props.submitOrder(e, this.props.food_id)}>Add to Order</button>
+          </div>
         </div>
       </div>
     )

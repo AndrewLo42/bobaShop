@@ -9,6 +9,7 @@ class MenuItem extends React.Component {
     this.state = {
       showAdds: false
     }
+    this.submitOrder = this.submitOrder.bind(this);
 
   }
 
@@ -31,7 +32,7 @@ class MenuItem extends React.Component {
     if(this.state.showAdds){
       return (
          <div className="card item-card col-lg-3 col-md-5 col-sm-6 col-xs-12 shadow-sm m-2" >
-           <AddOns></AddOns>
+           <AddOns submitOrder={this.submitOrder} food_id={this.props.food._id}></AddOns>
          </div>
       )
     }
