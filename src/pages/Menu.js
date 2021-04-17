@@ -8,8 +8,9 @@ class Menu extends Component {
     this.state = {
       food_data: [],
       total: 0,
-      orders: []
-      // this is where we are connecting to with sockets,
+      orders: [],
+      orderAddOns: []
+
     };
     this.sendOrder = this.sendOrder.bind(this);
   }
@@ -23,7 +24,7 @@ class Menu extends Component {
   };
   componentDidMount() {
     socket.emit("initial_data");
-    var state_current = this;
+    let state_current = this;
     socket.on("get_data", state_current.getData);
   }
   componentWillUnmount() {
@@ -31,27 +32,18 @@ class Menu extends Component {
   }
   //Function to place the order.
   sendOrder = () => {
-    var order_details = this.state.food_data;
-    console.log(order_details)
-    // var order_details;
+    let order_details = this.state.food_data;
+    if(!this.state.total) {
+      console.log('no orders')
+      return;
+    }
+    // console.log(order_details)
     this.state.food_data.map(food => {
       console.log(food)
     })
     socket.emit("sendOrder", order_details);
     this.getData(this.state.food_data)
     this.setState({total: 0})
-      // if (food._id === id) {
-      //   order_details = food;
-      // }
-    //   return food;
-    // });
-    // console.log(order_details);
-    // // socket.emit("putOrder", order_details);
-    // var new_array = this.state.food_data.map(food => {
-    //   food.order = 0;
-    //   return food;
-    // });
-    // this.setState({ food_data: new_array });
   }
 
   //function to add to cart
@@ -64,11 +56,11 @@ class Menu extends Component {
     });
   }
   // Changing the quantity in the state which is emitted to the backend at the time of placing the order.
-  changeQuantity = (event, foodid) => {
+  changeQuantity = (event, foodid, food_adds) => {
     // if (parseInt(event.target.value) < 0) {
     //   event.target.value = 0;
     // }
-    var new_array = this.state.food_data.map(food => {
+    let new_array = this.state.food_data.map(food => {
       if (food._id === foodid) {
         // food.order = parseInt(event.target.value);
         food.order++;

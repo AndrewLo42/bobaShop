@@ -35,7 +35,7 @@ class AddOns extends Component {
             <div className={`select-button ${this.state.ice === 0 ? 'option-selected' : 'option-unselected'}`} onClick={()=>this.setState({ice: 0})}>0%</div>
           </div>
           <div className="d-flex justify-content-center my-2">
-            <button onClick={(e) => this.props.submitOrder(e, this.props.food_id)}>Add to Order</button>
+            <button onClick={(e) => this.props.submitOrder(e, this.props.food_id, this.state)}>Add to Order</button>
           </div>
         </div>
       </div>

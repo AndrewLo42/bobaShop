@@ -13,18 +13,14 @@ class MenuItem extends React.Component {
 
   }
 
-  // addItemToCart() {
-
-  // }
-
-
   renderPrice() {
     const convertedPrice = (this.props.food.price / 100).toFixed(2);
     return `$ ${convertedPrice}`;
   }
 
-  submitOrder(e, food_id) {
-    this.props.changeQuantity(e, food_id)
+  submitOrder(e, food_id, food_adds) {
+    this.setState({showAdds: false})
+    this.props.changeQuantity(e, food_id, food_adds)
   }
 
   render() {
